@@ -52,7 +52,7 @@ export default function CanvasDetailPage() {
 
       if (response.ok) {
         alert('삭제되었습니다.');
-        router.push('/gallery');
+        window.location.href = '/gallery';
       } else {
         const err = await response.json();
         alert('삭제 실패: ' + err.error);

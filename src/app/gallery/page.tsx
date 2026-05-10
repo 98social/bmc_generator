@@ -16,7 +16,7 @@ export default function GalleryPage() {
   const fetchCanvases = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/canvases?page=${page}&limit=12`);
+      const response = await fetch(`/api/canvases?page=${page}&limit=12&_t=${Date.now()}`);
       const data = await response.json();
       setCanvases(data.items || []);
       setTotal(data.total || 0);

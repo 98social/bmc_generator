@@ -1,12 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useApiKey } from '@/context/ApiKeyContext';
 
 const ApiKeyBanner: React.FC = () => {
   const { apiKey, setApiKey, hasKey } = useApiKey();
+  const pathname = usePathname();
   const [inputValue, setInputValue] = useState(apiKey);
   const [isVisible, setIsVisible] = useState(!hasKey);
+
+  // 둘러보기 페이지 등 API 키가 필요 없는 페이지에서는 배너를 렌더링하지 않음
+  if (pathname === '/gallery') {
+    return null;
+  }
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
