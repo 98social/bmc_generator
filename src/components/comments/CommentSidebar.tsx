@@ -50,7 +50,7 @@ const CommentSidebar: React.FC<CommentSidebarProps> = ({
             table: 'comments',
             filter: `canvas_id=eq.${canvasId}&block_key=eq.${blockKey}`
           },
-          (payload) => {
+          (payload: any) => {
             setComments((prev) => [...prev, payload.new as Comment]);
           }
         )

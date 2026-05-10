@@ -6,10 +6,10 @@ import { db } from '@/lib/db';
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { data, error } = await db.canvases.getById(id);
 
     if (error) {
@@ -31,10 +31,10 @@ export async function GET(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const sessionId = req.headers.get('x-session-id');
     const adminPassword = req.headers.get('x-admin-password');
     const serverAdminPassword = process.env.ADMIN_PASSWORD;
